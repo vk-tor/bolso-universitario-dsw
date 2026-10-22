@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bolso Universitário</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="container topo-conteudo">
+      <div>
+        <h1>Bolso Universitário</h1>
+        <p class="subtitulo">Controle de despesas diárias</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container principal">
+    <section class="card card-saldo" aria-label="Resumo de gastos">
+      <span class="rotulo-saldo">Total gasto</span>
+      <strong id="total-gasto" class="valor-total">R$ 0,00</strong>
+    </section>
+
+    <section class="card" aria-label="Adicionar nova despesa">
+      <h2 class="titulo-card">Nova despesa</h2>
+      <form id="form-despesa">
+        <div class="campos-linha">
+          <div class="campo">
+            <label for="campo-descricao">Descrição</label>
+            <input 
+              type="text" 
+              id="campo-descricao" 
+              placeholder="Ex: Almoço no RU, passagem, xerox..." 
+              autocomplete="off"
+            >
+          </div>
+
+          <div class="campo campo-curto">
+            <label for="campo-valor">Valor (R$)</label>
+            <input 
+              type="number" 
+              id="campo-valor" 
+              placeholder="0,00" 
+              step="0.01" 
+              min="0.01"
+            >
+          </div>
+        </div>
+
+        <button type="submit" id="btn-adicionar" class="btn-adicionar">
+          Adicionar
+        </button>
+      </form>
+    </section>
+
+    <section class="card" aria-label="Lista de despesas">
+      <h2 class="titulo-card">Despesas registradas</h2>
+      <ul id="lista-despesas" class="lista-despesas"></ul>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <p>Desenvolvimento de Sistemas Web &middot; UFMA</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
