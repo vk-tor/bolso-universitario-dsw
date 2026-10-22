@@ -1,0 +1,100 @@
+:root {
+  --vinho: #82002d;
+  --vinho-escuro: #5c001f;
+  --vinho-claro: #faeaee;
+  --dourado: #c9a265;
+  --fundo: #f8f5f6;
+  --branco: #ffffff;
+  --texto: #222222;
+  --texto-leve: #6e6568;
+  --borda: #e8dedf;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--fundo);
+  color: var(--texto);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* cabecalho */
+.topo {
+  background: linear-gradient(135deg, var(--vinho) 0%, var(--vinho-escuro) 100%);
+  color: var(--branco);
+  border-bottom: 3px solid var(--dourado);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.topo-conteudo {
+  padding: 20px 16px;
+  text-align: center;
+}
+
+.topo h1 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.subtitulo {
+  font-size: 0.85rem;
+  color: #f3dce2;
+  margin-top: 2px;
+}
+
+/* conteudo principal */
+.principal {
+  flex: 1;
+  padding-top: 24px;
+  padding-bottom: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.card {
+  background-color: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: 0 3px 10px rgba(130, 0, 45, 0.04);
+}
+
+/* card do saldo total */
+.card-saldo {
+  text-align: center;
+  padding: 26px 20px;
+}
+
+.rotulo-saldo {
+  display: block;
+  color: var(--vinho);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.valor-total {
+  display: block;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #1c1c1c;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
