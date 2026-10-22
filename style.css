@@ -98,3 +98,106 @@ body {
   letter-spacing: -0.5px;
   line-height: 1.2;
 }
+
+.titulo-card {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--texto);
+  margin-bottom: 16px;
+}
+
+/* formulario */
+.campos-linha {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.campo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.campo-curto {
+  flex: 0 0 150px;
+}
+
+.campo label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--texto-leve);
+}
+
+.campo input {
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 11px 14px;
+  border: 1.5px solid var(--borda);
+  border-radius: 10px;
+  background-color: #fcfafa;
+  color: var(--texto);
+}
+
+.campo input:focus {
+  outline: none;
+  border-color: var(--vinho);
+  background-color: var(--branco);
+}
+
+.btn-adicionar {
+  font-family: inherit;
+  width: 100%;
+  background-color: var(--vinho);
+  color: var(--branco);
+  border: none;
+  border-radius: 30px;
+  padding: 13px 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(130, 0, 45, 0.2);
+}
+
+.btn-adicionar:hover {
+  background-color: var(--vinho-escuro);
+}
+
+/* lista de gastos */
+.lista-despesas {
+  list-style: none;
+}
+
+.item-despesa {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 4px;
+  border-bottom: 1px solid #f2eaeb;
+  gap: 12px;
+}
+
+.item-despesa:last-child {
+  border-bottom: none;
+}
+
+.nome-despesa {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--texto);
+}
+
+.valor-despesa {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--vinho);
+}
+
+.rodape {
+  border-top: 1px solid var(--borda);
+  padding: 16px 0;
+  text-align: center;
+  color: var(--texto-leve);
+  font-size: 0.8rem;
+}
