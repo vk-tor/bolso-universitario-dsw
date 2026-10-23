@@ -6,6 +6,36 @@ const listaEl = document.getElementById('lista-despesas');
 
 let despesas = [];
 
+// recria a lista na tela e recalcula o total
+function atualizarTela() {
+  listaEl.textContent = '';
+
+  let somaTotal = 0;
+
+  despesas.forEach((gasto) => {
+    somaTotal += gasto.valor;
+
+    const li = document.createElement('li');
+    li.className = 'item-despesa';
+
+    // usa textContent pra evitar XSS com o que o usuario digitou
+    const spanNome = document.createElement('span');
+    spanNome.className = 'nome-despesa';
+    spanNome.textContent = gasto.descricao;
+
+    const spanValor = document.createElement('span');
+    spanValor.className = 'valor-despesa';
+    spanValor.textContent = 'R$ ' + gasto.valor.toFixed(2).replace('.', ',');
+
+    li.appendChild(spanNome);
+    li.appendChild(spanValor);
+
+    listaEl.appendChild(li);
+  });
+
+  totalGastoEl.textContent = 'R$ ' + somaTotal.toFixed(2).replace('.', ',');
+}
+
 function adicionarDespesa(evento) {
   evento.preventDefault();
 
@@ -21,6 +51,8 @@ function adicionarDespesa(evento) {
     descricao: descricao,
     valor: valor
   });
+
+  atualizarTela();
 
   campoDescricao.value = '';
   campoValor.value = '';
