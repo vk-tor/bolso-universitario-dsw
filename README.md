@@ -14,4 +14,4 @@ Aplicação web minimalista voltada para estudantes universitários controlarem 
 
 1. Clone este repositório:
    ```bash
-   git clone [https://github.com/SEU-USUARIO/bolso-universitario-dsw.git](https://github.com/SEU-USUARIO/bolso-universitario-dsw.git)
+   git clone [https://github.com/vk-tor/bolso-universitario-dsw.git](https://github.com/vk-tor/bolso-universitario-dsw.git)
