@@ -1,6 +1,3 @@
-# Bolso Universitário
-Aplicação web minimalista de controle de gastos diários para estudantes universitários, desenvolvida em HTML, CSS e JavaScript com persistência via localStorage. Atividade da disciplina de Desenvolvimento de Sistemas Web (UFMA)
-
 #  Bolso Universitário
 
 Aplicação web minimalista voltada para estudantes universitários controlarem suas despesas diárias rápidas (como restaurante universitário, passagens, lanches e impressões). Desenvolvida como atividade prática da disciplina **Desenvolvimento de Sistemas Web (EECP0036)** na **Universidade Federal do Maranhão (UFMA)** — Prof. Renan Sousa Freire.
