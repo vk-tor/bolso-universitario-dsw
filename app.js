@@ -2,6 +2,8 @@ const formDespesa = document.getElementById('form-despesa');
 const campoDescricao = document.getElementById('campo-descricao');
 const campoValor = document.getElementById('campo-valor');
 const totalGastoEl = document.getElementById('total-gasto');
+const contadorEl = document.getElementById('contador-itens');
+const msgVaziaEl = document.getElementById('msg-vazia');
 const listaEl = document.getElementById('lista-despesas');
 
 let despesas = [];
@@ -12,7 +14,12 @@ function atualizarTela() {
 
   let somaTotal = 0;
 
-  despesas.forEach((gasto) => {
+  if (despesas.length === 0) {
+    msgVaziaEl.style.display = 'block';
+  } else {
+    msgVaziaEl.style.display = 'none';
+
+    despesas.forEach((gasto) => {
     somaTotal += gasto.valor;
 
     const li = document.createElement('li');
@@ -44,10 +51,15 @@ function atualizarTela() {
     li.appendChild(spanNome);
     li.appendChild(divAcoes);
 
-    listaEl.appendChild(li);
-  });
+      listaEl.appendChild(li);
+
+    });
+  }
 
   totalGastoEl.textContent = 'R$ ' + somaTotal.toFixed(2).replace('.', ',');
+
+  const qtd = despesas.length;
+  contadorEl.textContent = qtd === 1 ? '1 despesa registrada' : `${qtd} despesas registradas`;
 }
 
 function adicionarDespesa(evento) {

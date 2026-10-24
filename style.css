@@ -224,3 +224,21 @@ body {
   color: #c62828;
   border-color: #f5c2c7;
 }
+
+.contador-itens {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--vinho);
+  background-color: var(--vinho-claro);
+  padding: 3px 12px;
+  border-radius: 20px;
+}
+
+.msg-vazia {
+  text-align: center;
+  padding: 24px 10px;
+  color: var(--texto-leve);
+  font-size: 0.9rem;
+}
