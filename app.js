@@ -23,12 +23,26 @@ function atualizarTela() {
     spanNome.className = 'nome-despesa';
     spanNome.textContent = gasto.descricao;
 
+    const divAcoes = document.createElement('div');
+    divAcoes.className = 'acoes-despesa';
+
     const spanValor = document.createElement('span');
     spanValor.className = 'valor-despesa';
     spanValor.textContent = 'R$ ' + gasto.valor.toFixed(2).replace('.', ',');
 
+    const btnRemover = document.createElement('button');
+    btnRemover.type = 'button';
+    btnRemover.className = 'btn-remover';
+    btnRemover.textContent = 'Remover';
+    btnRemover.addEventListener('click', () => {
+      removerDespesa(gasto.id);
+    });
+
+    divAcoes.appendChild(spanValor);
+    divAcoes.appendChild(btnRemover);
+
     li.appendChild(spanNome);
-    li.appendChild(spanValor);
+    li.appendChild(divAcoes);
 
     listaEl.appendChild(li);
   });
@@ -57,6 +71,11 @@ function adicionarDespesa(evento) {
   campoDescricao.value = '';
   campoValor.value = '';
   campoDescricao.focus();
+}
+
+function removerDespesa(id) {
+  despesas = despesas.filter((item) => item.id !== id);
+  atualizarTela();
 }
 
 formDespesa.addEventListener('submit', adicionarDespesa);

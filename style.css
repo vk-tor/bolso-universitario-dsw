@@ -201,3 +201,26 @@ body {
   color: var(--texto-leve);
   font-size: 0.8rem;
 }
+
+.acoes-despesa {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.btn-remover {
+  font-family: inherit;
+  background: transparent;
+  color: var(--texto-leve);
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.btn-remover:hover {
+  background-color: #fdf2f2;
+  color: #c62828;
+  border-color: #f5c2c7;
+}
