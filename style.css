@@ -242,3 +242,14 @@ body {
   color: var(--texto-leve);
   font-size: 0.9rem;
 }
+
+.info-despesa {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.data-despesa {
+  font-size: 0.78rem;
+  color: var(--texto-leve);
+}

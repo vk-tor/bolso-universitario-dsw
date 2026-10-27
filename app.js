@@ -5,16 +5,31 @@ const campoDescricao = document.getElementById('campo-descricao');
 const campoValor = document.getElementById('campo-valor');
 const totalGastoEl = document.getElementById('total-gasto');
 const contadorEl = document.getElementById('contador-itens');
-const msgVaziaEl = document.getElementById('msg-vazia');
 const listaEl = document.getElementById('lista-despesas');
+const msgVaziaEl = document.getElementById('msg-vazia');
 
 let despesas = [];
 
+function formatarMoeda(valor) {
+  return Number(valor).toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  });
+}
+
 // busca o que ja tava salvo no navegador
 function carregarDoStorage() {
-  const dados = localStorage.getItem(CHAVE_STORAGE);
-  if (dados) {
-    despesas = JSON.parse(dados);
+  try {
+    const dados = localStorage.getItem(CHAVE_STORAGE);
+    if (dados) {
+      despesas = JSON.parse(dados);
+      if (!Array.isArray(despesas)) {
+        despesas = [];
+      }
+    }
+  } catch (erro) {
+    console.error('Erro ao ler dados do localStorage:', erro);
+    despesas = [];
   }
 }
 
@@ -34,43 +49,55 @@ function atualizarTela() {
     msgVaziaEl.style.display = 'none';
 
     despesas.forEach((gasto) => {
-    somaTotal += gasto.valor;
+      const valorNum = Number(gasto.valor) || 0;
+      somaTotal += valorNum;
 
-    const li = document.createElement('li');
-    li.className = 'item-despesa';
+      const li = document.createElement('li');
+      li.className = 'item-despesa';
 
-    // usa textContent pra evitar XSS com o que o usuario digitou
-    const spanNome = document.createElement('span');
-    spanNome.className = 'nome-despesa';
-    spanNome.textContent = gasto.descricao;
+      const divInfo = document.createElement('div');
+      divInfo.className = 'info-despesa';
 
-    const divAcoes = document.createElement('div');
-    divAcoes.className = 'acoes-despesa';
+      // usa textContent pra evitar XSS com o que o usuario digitou
+      const spanNome = document.createElement('span');
+      spanNome.className = 'nome-despesa';
+      spanNome.textContent = gasto.descricao;
 
-    const spanValor = document.createElement('span');
-    spanValor.className = 'valor-despesa';
-    spanValor.textContent = 'R$ ' + gasto.valor.toFixed(2).replace('.', ',');
+      divInfo.appendChild(spanNome);
 
-    const btnRemover = document.createElement('button');
-    btnRemover.type = 'button';
-    btnRemover.className = 'btn-remover';
-    btnRemover.textContent = 'Remover';
-    btnRemover.addEventListener('click', () => {
-      removerDespesa(gasto.id);
-    });
+      if (gasto.data) {
+        const spanData = document.createElement('span');
+        spanData.className = 'data-despesa';
+        spanData.textContent = gasto.data;
+        divInfo.appendChild(spanData);
+      }
 
-    divAcoes.appendChild(spanValor);
-    divAcoes.appendChild(btnRemover);
+      const divAcoes = document.createElement('div');
+      divAcoes.className = 'acoes-despesa';
 
-    li.appendChild(spanNome);
-    li.appendChild(divAcoes);
+      const spanValor = document.createElement('span');
+      spanValor.className = 'valor-despesa';
+      spanValor.textContent = formatarMoeda(valorNum);
+
+      const btnRemover = document.createElement('button');
+      btnRemover.type = 'button';
+      btnRemover.className = 'btn-remover';
+      btnRemover.textContent = 'Remover';
+      btnRemover.addEventListener('click', () => {
+        removerDespesa(gasto.id);
+      });
+
+      divAcoes.appendChild(spanValor);
+      divAcoes.appendChild(btnRemover);
+
+      li.appendChild(divInfo);
+      li.appendChild(divAcoes);
 
       listaEl.appendChild(li);
-
     });
   }
 
-  totalGastoEl.textContent = 'R$ ' + somaTotal.toFixed(2).replace('.', ',');
+  totalGastoEl.textContent = formatarMoeda(somaTotal);
 
   const qtd = despesas.length;
   contadorEl.textContent = qtd === 1 ? '1 despesa registrada' : `${qtd} despesas registradas`;
@@ -86,10 +113,16 @@ function adicionarDespesa(evento) {
     return;
   }
 
+  const hoje = new Date().toLocaleDateString('pt-BR', {
+    day: '2-digit',
+    month: '2-digit'
+  });
+
   despesas.push({
     id: Date.now().toString(),
     descricao: descricao,
-    valor: valor
+    valor: valor,
+    data: hoje
   });
 
   salvarNoStorage();
