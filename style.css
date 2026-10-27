@@ -8,6 +8,8 @@
   --texto: #222222;
   --texto-leve: #6e6568;
   --borda: #e8dedf;
+  --erro-texto: #c62828;
+  --erro-fundo: #fdf2f2;
 }
 
 * {
@@ -99,6 +101,17 @@ body {
   line-height: 1.2;
 }
 
+.contador-itens {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--vinho);
+  background-color: var(--vinho-claro);
+  padding: 3px 12px;
+  border-radius: 20px;
+}
+
 .titulo-card {
   font-size: 1.05rem;
   font-weight: 700;
@@ -138,6 +151,7 @@ body {
   border-radius: 10px;
   background-color: #fcfafa;
   color: var(--texto);
+  transition: border-color 0.15s, background-color 0.15s;
 }
 
 .campo input:focus {
@@ -158,10 +172,26 @@ body {
   font-weight: 500;
   cursor: pointer;
   box-shadow: 0 3px 8px rgba(130, 0, 45, 0.2);
+  transition: background-color 0.15s;
 }
 
 .btn-adicionar:hover {
   background-color: var(--vinho-escuro);
+}
+
+/* aviso de validacao */
+.msg-erro {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background-color: var(--erro-fundo);
+  border: 1px solid #f5c2c7;
+  color: var(--erro-texto);
+  font-size: 0.86rem;
+}
+
+.oculto {
+  display: none;
 }
 
 /* lista de gastos */
@@ -182,30 +212,36 @@ body {
   border-bottom: none;
 }
 
+.info-despesa {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
 .nome-despesa {
   font-size: 0.95rem;
   font-weight: 500;
   color: var(--texto);
+  word-break: break-word;
 }
 
-.valor-despesa {
-  font-size: 0.96rem;
-  font-weight: 700;
-  color: var(--vinho);
-}
-
-.rodape {
-  border-top: 1px solid var(--borda);
-  padding: 16px 0;
-  text-align: center;
+.data-despesa {
+  font-size: 0.78rem;
   color: var(--texto-leve);
-  font-size: 0.8rem;
 }
 
 .acoes-despesa {
   display: flex;
   align-items: center;
   gap: 14px;
+  flex-shrink: 0;
+}
+
+.valor-despesa {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--vinho);
 }
 
 .btn-remover {
@@ -217,23 +253,13 @@ body {
   padding: 5px 10px;
   font-size: 0.78rem;
   cursor: pointer;
+  transition: all 0.15s;
 }
 
 .btn-remover:hover {
-  background-color: #fdf2f2;
-  color: #c62828;
+  background-color: var(--erro-fundo);
+  color: var(--erro-texto);
   border-color: #f5c2c7;
-}
-
-.contador-itens {
-  display: inline-block;
-  margin-top: 8px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--vinho);
-  background-color: var(--vinho-claro);
-  padding: 3px 12px;
-  border-radius: 20px;
 }
 
 .msg-vazia {
@@ -243,27 +269,28 @@ body {
   font-size: 0.9rem;
 }
 
-.info-despesa {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.data-despesa {
-  font-size: 0.78rem;
+.rodape {
+  border-top: 1px solid var(--borda);
+  padding: 16px 0;
+  text-align: center;
   color: var(--texto-leve);
+  font-size: 0.8rem;
 }
 
-.msg-erro {
-  margin-top: 14px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  background-color: #fdf2f2;
-  border: 1px solid #f5c2c7;
-  color: #c62828;
-  font-size: 0.86rem;
-}
+@media (max-width: 540px) {
+  .campos-linha {
+    flex-direction: column;
+  }
 
-.oculto {
-  display: none;
+  .campo-curto {
+    flex: 1;
+  }
+
+  .card {
+    padding: 18px 16px;
+  }
+
+  .valor-total {
+    font-size: 2rem;
+  }
 }
