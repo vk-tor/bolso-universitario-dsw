@@ -253,3 +253,17 @@ body {
   font-size: 0.78rem;
   color: var(--texto-leve);
 }
+
+.msg-erro {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background-color: #fdf2f2;
+  border: 1px solid #f5c2c7;
+  color: #c62828;
+  font-size: 0.86rem;
+}
+
+.oculto {
+  display: none;
+}

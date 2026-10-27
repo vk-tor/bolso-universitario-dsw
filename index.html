@@ -28,7 +28,7 @@
 
     <section class="card" aria-label="Adicionar nova despesa">
       <h2 class="titulo-card">Nova despesa</h2>
-      <form id="form-despesa">
+      <form id="form-despesa" novalidate>
         <div class="campos-linha">
           <div class="campo">
             <label for="campo-descricao">Descrição</label>
@@ -56,10 +56,13 @@
           Adicionar
         </button>
       </form>
+
+      <p id="msg-erro" class="msg-erro oculto" role="alert"></p>
     </section>
 
     <section class="card" aria-label="Lista de despesas">
       <h2 class="titulo-card">Despesas registradas</h2>
+
       <ul id="lista-despesas" class="lista-despesas"></ul>
 
       <p id="msg-vazia" class="msg-vazia">

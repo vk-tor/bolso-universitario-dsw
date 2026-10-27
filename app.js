@@ -7,6 +7,7 @@ const totalGastoEl = document.getElementById('total-gasto');
 const contadorEl = document.getElementById('contador-itens');
 const listaEl = document.getElementById('lista-despesas');
 const msgVaziaEl = document.getElementById('msg-vazia');
+const msgErroEl = document.getElementById('msg-erro');
 
 let despesas = [];
 
@@ -31,6 +32,16 @@ function carregarDoStorage() {
     console.error('Erro ao ler dados do localStorage:', erro);
     despesas = [];
   }
+}
+
+function mostrarErro(texto) {
+  msgErroEl.textContent = texto;
+  msgErroEl.classList.remove('oculto');
+}
+
+function limparErro() {
+  msgErroEl.textContent = '';
+  msgErroEl.classList.add('oculto');
 }
 
 function salvarNoStorage() {
@@ -105,11 +116,21 @@ function atualizarTela() {
 
 function adicionarDespesa(evento) {
   evento.preventDefault();
+  limparErro();
 
   const descricao = campoDescricao.value.trim();
-  const valor = parseFloat(campoValor.value);
+  const valorTexto = campoValor.value.trim();
+  const valor = parseFloat(valorTexto);
 
-  if (!descricao || isNaN(valor) || valor <= 0) {
+  if (!descricao) {
+    mostrarErro('Preencha a descrição da despesa antes de adicionar.');
+    campoDescricao.focus();
+    return;
+  }
+
+  if (!valorTexto || isNaN(valor) || valor <= 0) {
+    mostrarErro('Informe um valor válido maior que zero.');
+    campoValor.focus();
     return;
   }
 
