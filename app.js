@@ -34,6 +34,10 @@ function carregarDoStorage() {
   }
 }
 
+function salvarNoStorage() {
+  localStorage.setItem(CHAVE_STORAGE, JSON.stringify(despesas));
+}
+
 function mostrarErro(texto) {
   msgErroEl.textContent = texto;
   msgErroEl.classList.remove('oculto');
@@ -42,10 +46,6 @@ function mostrarErro(texto) {
 function limparErro() {
   msgErroEl.textContent = '';
   msgErroEl.classList.add('oculto');
-}
-
-function salvarNoStorage() {
-  localStorage.setItem(CHAVE_STORAGE, JSON.stringify(despesas));
 }
 
 // recria a lista na tela e recalcula o total
@@ -119,7 +119,7 @@ function adicionarDespesa(evento) {
   limparErro();
 
   const descricao = campoDescricao.value.trim();
-  const valorTexto = campoValor.value.trim();
+  const valorTexto = campoValor.value.trim().replace(',', '.');
   const valor = parseFloat(valorTexto);
 
   if (!descricao) {
